@@ -1,23 +1,18 @@
 [gd_scene load_steps=3 format=3 uid="uid://d4b2o23wk1h6l"]
 
 [ext_resource type="PackedScene" uid="uid://c5ona3svymwqb" path="res://Scenes/golf-ball.tscn" id="1_5enur"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_32eff"]
+[ext_resource type="PackedScene" uid="uid://kwycccyd5tgk" path="res://Scenes/test-ground.tscn" id="2_8qxjs"]
 
 [node name="Game" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(0, 89)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("WorldBoundaryShape2D_32eff")
-debug_color = Color(0, 0.6, 0.701961, 1)
+zoom = Vector2(0.545, 0.545)
 
 [node name="Golf-ball" parent="." instance=ExtResource("1_5enur")]
-position = Vector2(-242, -101)
+position = Vector2(-890, -11)
 
 [node name="Golf-ball2" parent="." instance=ExtResource("1_5enur")]
-position = Vector2(242, -111)
+position = Vector2(861, -11)
 PLAYER_TYPE = 1
+
+[node name="Test-ground" parent="." instance=ExtResource("2_8qxjs")]

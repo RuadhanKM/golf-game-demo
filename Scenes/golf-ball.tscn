@@ -4,7 +4,6 @@
 [ext_resource type="Script" path="res://Scripts/golf-ball.gd" id="1_ppqy3"]
 [ext_resource type="Texture2D" uid="uid://do3q3aopo3y2q" path="res://Assets/Sprites/arrow.png" id="3_5kn3r"]
 [ext_resource type="Script" path="res://Scripts/arrow.gd" id="4_4ytlf"]
-[ext_resource type="Script" path="res://Scripts/golf-ball-shadow-follow.gd" id="5_ufmjc"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qlgvs"]
 friction = 0.94
@@ -22,6 +21,20 @@ gradient = SubResource("Gradient_r82iq")
 fill_from = Vector2(1, 1)
 fill_to = Vector2(0.059633, 0.0366972)
 
+[sub_resource type="GDScript" id="GDScript_j684c"]
+script/source = "extends Sprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
 [node name="Golf-ball" type="RigidBody2D"]
 mass = 0.043
 physics_material_override = SubResource("PhysicsMaterial_qlgvs")
@@ -29,6 +42,7 @@ script = ExtResource("1_ppqy3")
 
 [node name="Arrow" type="Sprite2D" parent="."]
 visible = false
+z_index = 1
 texture = ExtResource("3_5kn3r")
 script = ExtResource("4_4ytlf")
 
@@ -44,4 +58,4 @@ texture = ExtResource("1_ajpld")
 [node name="Sprite2D" type="Sprite2D" parent="Golf-ball"]
 scale = Vector2(5, 5)
 texture = SubResource("GradientTexture2D_fy4nv")
-script = ExtResource("5_ufmjc")
+script = SubResource("GDScript_j684c")

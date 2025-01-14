@@ -11,14 +11,14 @@ enum PLAYER_TYPES {
 @onready var ARROW = $Arrow
 @onready var BALL_SHADOW = $"Golf-ball/Sprite2D"
 
-const SWING_FORCE = 20
+const SWING_FORCE = 10
 
 func _ready() -> void:
 	ARROW.connect("golf_swing", on_golf_swing)
-	ARROW.p1 = PLAYER_TYPE == PLAYER_TYPES.PLAYER1
+	ARROW.set_player(PLAYER_TYPE == PLAYER_TYPES.PLAYER1)
 
-func on_golf_swing(angle: float):
-	apply_central_impulse(-Vector2(cos(angle), sin(angle)) * SWING_FORCE)
+func on_golf_swing(angle: float, force: float):
+	apply_central_impulse(-Vector2(cos(angle), sin(angle)) * SWING_FORCE * force)
 
 func _physics_process(delta: float) -> void:
 	if not ARROW or not BALL_SHADOW:

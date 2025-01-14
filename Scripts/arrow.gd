@@ -1,30 +1,56 @@
 extends Sprite2D
 
 signal golf_swing
-const ORBIT_DIS = 50
 
+var keybind = "P1_Swing"
 var cur_orbit = 0
+var cur_force = 1
 var parent_rot = 0
 var orbiting = false
+var forcing = false
 var p1 = true
+var time_at_start_forcing = 0
+
+func set_player(is_p1: bool) -> void:
+	p1 = is_p1
+	keybind = "P1_Swing" if p1 else "P2_Swing"
 
 func _input(event: InputEvent) -> void:	
-	if (event.is_action_pressed("P1_Swing") and p1) or (event.is_action_pressed("P2_Swing") and not p1):
-		orbiting = true
-		cur_orbit = -PI/2
-		visible = orbiting
-	if (event.is_action_released("P1_Swing") and p1) or (event.is_action_released("P2_Swing") and not p1):
-		orbiting = false
-		visible = orbiting
-		emit_signal("golf_swing", cur_orbit)
+	if event.is_action_pressed(keybind):
+		if orbiting:
+			push_error("Player tapped while orbiting!")
+		elif not forcing:
+			orbiting = true
+			visible = true
+			cur_orbit = -PI/2
+			cur_force = 1
+	if event.is_action_released(keybind):
+		if forcing:
+			emit_signal("golf_swing", cur_orbit, cur_force)
+			forcing = false
+			visible = false
+		elif orbiting:
+			orbiting = false
+			forcing = true
+			time_at_start_forcing = Time.get_ticks_msec()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if !orbiting:
+	if !orbiting and !forcing:
 		return
 	
-	cur_orbit += (-delta if p1 else delta) * PI
+	if orbiting:
+		cur_orbit += (-delta if p1 else delta) * PI
+	if forcing:
+		cur_force = sin((Time.get_ticks_msec() - time_at_start_forcing)*0.003 + PI*1.5)+2
+	
 	var vis_orbit = cur_orbit - parent_rot
 	
-	transform = Transform2D(vis_orbit, Vector2(0.12, 0.12), 0, -Vector2(cos(vis_orbit), sin(vis_orbit))*ORBIT_DIS)
+	transform = Transform2D(
+		vis_orbit, 
+		Vector2(0.12, 0.12), 
+		0, 
+		-Vector2(cos(vis_orbit), 
+		sin(vis_orbit))*(5+cur_force*40)
+	)
 	
