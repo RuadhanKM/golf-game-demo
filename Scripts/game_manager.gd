@@ -34,12 +34,16 @@ func spawn_players():
 func on_goal(player: golfball):
 	game_state = GAME_STATES.WIN_ANIMATION
 	Engine.time_scale = 0.3
+	
 	await get_tree().create_timer(1.0).timeout
-	spawn_players()
+	
 	Engine.time_scale = 1
+	spawn_players()
 	golf_hole.scored = false
 	golf_hole.get_node("GPUParticles2D").restart()
 	golf_hole.get_node("GPUParticles2D").emitting = false
 	game_state = GAME_STATES.PICKING_CARD
-	ui_control.emit_signal("")
-	
+	ui_control.emit_signal("begin_card_pick", player.PLAYER_TYPE)
+
+func on_card_picked(card):
+	game_state = GAME_STATES.GAMEPLAY

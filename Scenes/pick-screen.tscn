@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://b7l2wwtvtqhkx"]
+[gd_scene load_steps=3 format=3 uid="uid://babuel215jd8i"]
 
-[ext_resource type="PackedScene" uid="uid://o8jk5di0lqew" path="res://Scenes/card.tscn" id="1_qckhp"]
-[ext_resource type="Script" path="res://Scenes/ui_manager.gd" id="1_qucal"]
+[ext_resource type="PackedScene" path="res://Scenes/card.tscn" id="1_qckhp"]
+[ext_resource type="Script" path="res://Scripts/ui_manager.gd" id="1_tndlx"]
 
 [node name="Card-ui" type="Control"]
 layout_mode = 3
@@ -24,7 +24,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("1_qucal")
+script = ExtResource("1_tndlx")
 
 [node name="Card" parent="Panel" instance=ExtResource("1_qckhp")]
 layout_mode = 1
