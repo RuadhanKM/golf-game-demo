@@ -1,3 +1,92 @@
-[gd_scene format=3 uid="uid://bxkmef2j3woq3"]
+[gd_scene load_steps=11 format=3 uid="uid://bxkmef2j3woq3"]
+
+[ext_resource type="Texture2D" uid="uid://c4fmpevipwwx5" path="res://Assets/Sprites/golf-hole.png" id="1_evj5k"]
+[ext_resource type="Script" path="res://Scripts/golf-hole-area.gd" id="2_lke2q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k0ey4"]
+size = Vector2(28, 17)
+
+[sub_resource type="Gradient" id="Gradient_pjnih"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.196721, 0.418033, 0.614754, 0.852459)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.866667, 0, 1, 0, 1, 0.0833333, 1, 0, 0.0833333, 1, 1, 0.95, 0, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4gq6e"]
+gradient = SubResource("Gradient_pjnih")
+width = 8
+
+[sub_resource type="Curve" id="Curve_dmp8x"]
+_data = [Vector2(0, 0.736264), 0.0, 5.76923, 0, 0, Vector2(0.0533333, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.39366, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_coawx"]
+curve = SubResource("Curve_dmp8x")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qa2ar"]
+lifetime_randomness = 0.15
+particle_flag_rotate_y = true
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, -1, 0)
+spread = 10.0
+initial_velocity_min = 240.95
+initial_velocity_max = 413.19
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = -2.23517e-05
+gravity = Vector3(0, 200, 0)
+scale_min = 3.0
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_coawx")
+color_initial_ramp = SubResource("GradientTexture1D_4gq6e")
+turbulence_enabled = true
+turbulence_noise_strength = 3.15
+turbulence_noise_scale = 5.737
+turbulence_noise_speed = Vector3(0, 1.415, 0)
+turbulence_influence_min = 0.034
+turbulence_influence_max = 0.09
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ju3xf"]
+size = Vector2(10, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_itolv"]
+size = Vector2(44, 12)
 
 [node name="Golf-hole" type="Node2D"]
+scale = Vector2(1.3, 1.3)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+texture = ExtResource("1_evj5k")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+script = ExtResource("2_lke2q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+position = Vector2(-9, 68.5)
+shape = SubResource("RectangleShape2D_k0ey4")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D/Area2D"]
+position = Vector2(-9.23077, 75.3846)
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_qa2ar")
+lifetime = 2.0
+one_shot = true
+speed_scale = 5.0
+explosiveness = 1.0
+fixed_fps = 100
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
+position = Vector2(-26, 63)
+shape = SubResource("RectangleShape2D_ju3xf")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
+position = Vector2(-9, 82)
+shape = SubResource("RectangleShape2D_itolv")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
+position = Vector2(8, 63)
+shape = SubResource("RectangleShape2D_ju3xf")

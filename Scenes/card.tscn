@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://o8jk5di0lqew"]
+
+[node name="Card" type="Panel"]
+clip_contents = true
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -150.0
+offset_right = 100.0
+offset_bottom = 150.0
+pivot_offset = Vector2(100, 150)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 300.0
+text = "Hello World"

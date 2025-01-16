@@ -1,18 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://d4b2o23wk1h6l"]
+[gd_scene load_steps=4 format=3 uid="uid://d4b2o23wk1h6l"]
 
 [ext_resource type="PackedScene" uid="uid://c5ona3svymwqb" path="res://Scenes/golf-ball.tscn" id="1_5enur"]
 [ext_resource type="PackedScene" uid="uid://kwycccyd5tgk" path="res://Scenes/test-ground.tscn" id="2_8qxjs"]
+[ext_resource type="PackedScene" uid="uid://b7l2wwtvtqhkx" path="res://Scenes/pick-screen.tscn" id="3_bksyb"]
 
 [node name="Game" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.545, 0.545)
+zoom = Vector2(0.9, 0.9)
 
 [node name="Golf-ball" parent="." instance=ExtResource("1_5enur")]
 position = Vector2(-890, -11)
 
 [node name="Golf-ball2" parent="." instance=ExtResource("1_5enur")]
-position = Vector2(861, -11)
+position = Vector2(866, -25)
 PLAYER_TYPE = 1
 
 [node name="Test-ground" parent="." instance=ExtResource("2_8qxjs")]
+
+[node name="Card-ui" parent="." instance=ExtResource("3_bksyb")]
+visible = false
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
