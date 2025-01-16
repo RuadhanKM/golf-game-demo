@@ -3,12 +3,7 @@ extends RigidBody2D
 
 class_name golfball
 
-enum PLAYER_TYPES {
-	PLAYER1,
-	PLAYER2
-}
-
-@export var PLAYER_TYPE : PLAYER_TYPES = PLAYER_TYPES.PLAYER1
+@export var PLAYER_TYPE : GameManager.PLAYER_TYPES = GameManager.PLAYER_TYPES.PLAYER1
 
 @onready var ARROW = $Arrow
 @onready var BALL_SHADOW = $"Golf-ball/Sprite2D"
@@ -20,11 +15,11 @@ func _ready() -> void:
 		return
 	
 	ARROW.connect("golf_swing", on_golf_swing)
-	ARROW.set_player(PLAYER_TYPE == PLAYER_TYPES.PLAYER1)
+	ARROW.set_player(PLAYER_TYPE == GameManager.PLAYER_TYPES.PLAYER1)
 	
-	if PLAYER_TYPE == PLAYER_TYPES.PLAYER1:
+	if PLAYER_TYPE == GameManager.PLAYER_TYPES.PLAYER1:
 		GameManager.p1 = self
-	if PLAYER_TYPE == PLAYER_TYPES.PLAYER2:
+	if PLAYER_TYPE == GameManager.PLAYER_TYPES.PLAYER2:
 		GameManager.p2 = self
 
 func on_golf_swing(angle: float, force: float):

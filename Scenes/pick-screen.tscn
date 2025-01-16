@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://babuel215jd8i"]
 
-[ext_resource type="PackedScene" path="res://Scenes/card.tscn" id="1_qckhp"]
+[ext_resource type="PackedScene" uid="uid://o8jk5di0lqew" path="res://Scenes/card.tscn" id="1_qckhp"]
 [ext_resource type="Script" path="res://Scripts/ui_manager.gd" id="1_tndlx"]
 
 [node name="Card-ui" type="Control"]
@@ -28,7 +28,6 @@ script = ExtResource("1_tndlx")
 
 [node name="Card" parent="Panel" instance=ExtResource("1_qckhp")]
 layout_mode = 1
-anchors_preset = 8
 grow_horizontal = 2
 grow_vertical = 2
 

@@ -18,4 +18,4 @@ func area_entered(area: Area2D) -> void:
 
 	$GPUParticles2D.emitting = true
 	
-	emit_signal("goal", area.get_parent())
+	emit_signal("goal", area.get_parent().PLAYER_TYPE)
