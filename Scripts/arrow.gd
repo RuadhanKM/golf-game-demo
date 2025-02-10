@@ -26,7 +26,7 @@ func _input(event: InputEvent) -> void:
 			orbiting = true
 			visible = true
 			cur_orbit = -PI/2
-			cur_force = 2.5
+			cur_force = 1
 	if event.is_action_released(keybind):
 		if forcing:
 			emit_signal("golf_swing", cur_orbit, cur_force)
@@ -50,7 +50,7 @@ func _process(delta: float) -> void:
 	if orbiting:
 		cur_orbit += (-delta if p1 else delta) * PI * 1.5
 	if forcing:
-		cur_force = sin((Time.get_ticks_msec() - time_at_start_forcing)*0.005 + PI/6)+2
+		cur_force = sin((Time.get_ticks_msec() - time_at_start_forcing)*0.005 - PI/3)+2
 	
 	var vis_orbit = cur_orbit - parent_rot
 	

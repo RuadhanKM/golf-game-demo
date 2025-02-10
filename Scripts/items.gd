@@ -11,20 +11,20 @@ enum RARITIES {
 }
 
 var rarity_prob = {
-	RARITIES.COMMON: {"prob": 800, "bbcode": "Common"},
-	RARITIES.RARE: {"prob": 800, "bbcode": "Common"},
-	RARITIES.EPIC: {"prob": 800, "bbcode": "Common"},
-	RARITIES.LEGENDARY: {"prob": 800, "bbcode": "Common"},
+	RARITIES.COMMON: {"prob": 2000, "bbcode": "Common"},
+	RARITIES.RARE: {"prob": 1600, "bbcode": "Rare"},
+	RARITIES.EPIC: {"prob": 1000, "bbcode": "Epic"},
+	RARITIES.LEGENDARY: {"prob": 300, "bbcode": "Legendary"},
 	
-	RARITIES.EXOTIC: {"prob": 800, "bbcode": "Common"},
-	RARITIES.SECRET: {"prob": 800, "bbcode": "Common"}
+	RARITIES.EXOTIC: {"prob": 10, "bbcode": "Exotic"},
+	RARITIES.SECRET: {"prob": 1, "bbcode": "Secret"}
 }	
 
 func get_rarity(rarity: int):
 	for i in rarity_prob:
-		if rarity < rarity_prob[i]:
+		if rarity <= rarity_prob[i].prob:
 			return i
-		rarity -= rarity_prob[i]
+		rarity -= rarity_prob[i].prob
 	assert(false)
 
 var rarity_total = 0
@@ -92,4 +92,4 @@ var items = {
 
 func _ready() -> void:
 	for i in rarity_prob:
-		rarity_total += rarity_prob[i]
+		rarity_total += rarity_prob[i].prob
