@@ -11,12 +11,12 @@ enum RARITIES {
 }
 
 var rarity_prob = {
-	RARITIES.COMMON: {"prob": 2000, "bbcode": "Common"},
-	RARITIES.RARE: {"prob": 1600, "bbcode": "Rare"},
+	RARITIES.COMMON: {"prob": 8000, "bbcode": "Common"},
+	RARITIES.RARE: {"prob": 4000, "bbcode": "Rare"},
 	RARITIES.EPIC: {"prob": 1000, "bbcode": "Epic"},
 	RARITIES.LEGENDARY: {"prob": 300, "bbcode": "Legendary"},
 	
-	RARITIES.EXOTIC: {"prob": 10, "bbcode": "Exotic"},
+	RARITIES.EXOTIC: {"prob": 50, "bbcode": "Exotic"},
 	RARITIES.SECRET: {"prob": 1, "bbcode": "Secret"}
 }	
 

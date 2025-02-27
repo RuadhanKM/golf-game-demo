@@ -28,7 +28,7 @@ func _ready() -> void:
 	
 	visible = false
 	connect("begin_card_pick", on_begin_card_pick)
-
+	
 func _input(event: InputEvent) -> void:
 	if GameManager.game_state != GameManager.GAME_STATES.PICKING_CARD:
 		return
@@ -50,9 +50,13 @@ func on_begin_card_pick(player: GameManager.PLAYER_TYPES):
 	visible = true
 	selected_card = 1
 	
+	
+	
 	for i in range(max_cards):
 		var rarity = Items.get_rarity(randi_range(0, Items.rarity_total))
 		
 		var card: RichTextLabel = get_child(i).get_child(0)
 		
-		card.text = "{name}\n{desc}\n{rarity}".format({"rarity": Items.rarity_prob[i].bbcode})
+		card.text = "{name}\n{desc}\n{rarity}".format({
+			"rarity": Items.rarity_prob[rarity].bbcode
+		})
