@@ -29,6 +29,8 @@ func on_ready() -> void:
 	assert(golf_hole != null)
 	assert(map_info != null)
 	assert(ui_control != null)
+	assert(CaddyManager != null)
+	assert(Items != null)
 	
 	golf_hole.connect("goal", on_goal)
 	ui_control.connect("card_picked", on_card_picked)
@@ -60,5 +62,9 @@ func on_goal(player: PLAYER_TYPES):
 		PLAYER_TYPES.PLAYER1 if player == PLAYER_TYPES.PLAYER2 else PLAYER_TYPES.PLAYER2
 	)
 
-func on_card_picked(card):
+func on_card_picked(card, player):
 	game_state = GAME_STATES.GAMEPLAY
+	CaddyManager.on_card_pick(card, player)
+
+func get_plr(player):
+	return p1 if player == PLAYER_TYPES.PLAYER1 else p2

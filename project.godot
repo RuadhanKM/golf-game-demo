@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 GameManager="*res://Scripts/game_manager.gd"
 Items="*res://Scripts/items.gd"
+CaddyManager="*res://Scripts/caddy_manager.gd"
+C_BigArm="*res://Scripts/Caddies/c_big_arm.gd"
+C_BouncyBall="*res://Scripts/Caddies/c_bouncy_ball.gd"
+C_HeavyBall="*res://Scripts/Caddies/c_quicker_cooldown.gd"
+C_SmallBall="*res://Scripts/Caddies/c_small_ball.gd"
 
 [display]
 

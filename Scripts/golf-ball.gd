@@ -8,7 +8,11 @@ class_name golfball
 @onready var ARROW = $Arrow
 @onready var BALL_SHADOW = $"Golf-ball/Sprite2D"
 
-const SWING_FORCE = 10
+var s_swing_force = 10
+var s_bounce = 0.2
+var s_mass = 0.043
+var s_scale = 1
+var s_ability_cooldown = 5
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -23,11 +27,19 @@ func _ready() -> void:
 		GameManager.p2 = self
 
 func on_golf_swing(angle: float, force: float):
-	apply_central_impulse(-Vector2(cos(angle), sin(angle)) * SWING_FORCE * force)
+	apply_central_impulse(-Vector2(cos(angle), sin(angle)) * s_swing_force * force)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(delta: float) -> void:	
 	if Engine.is_editor_hint():
 		return
+	
+	physics_material_override.bounce = s_bounce
+	
+	$CollisionShape2D.scale = Vector2.ONE*1.3*s_scale
+	$"Golf-ball".scale = Vector2.ONE*0.1*s_scale
+	$Area2D.scale = Vector2.ONE*1.3*s_scale
+	
+	mass = s_mass
 	
 	ARROW.parent_rot = rotation
 	BALL_SHADOW.rotation = -rotation
